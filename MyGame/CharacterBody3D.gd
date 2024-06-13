@@ -8,7 +8,10 @@ extends CharacterBody3D
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var jump_speed = 5
-
+func _ready():
+	# Capture the mouse
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 func _physics_process(delta):
 	velocity.y += -gravity * delta
 	var input_dir = Input.get_vector("left", "right", "up", "down")
