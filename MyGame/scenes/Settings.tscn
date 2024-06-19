@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://pklqo8sf3vms"]
+
+[ext_resource type="Script" path="res://scenes/Settings.gd" id="1_oebdl"]
+[ext_resource type="FontFile" uid="uid://fg1iigf0xxjj" path="res://fonts/alagard_by_pix3m-d6awiwp.ttf" id="2_7nsh1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nx1qb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fb2yf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Settings" type="CanvasLayer"]
+script = ExtResource("1_oebdl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 592.0
+offset_bottom = 284.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 58
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7nsh1")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_nx1qb")
+text = "Back To Title"
+alignment = 0
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7nsh1")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_fb2yf")
+text = "Volume"
+alignment = 0
