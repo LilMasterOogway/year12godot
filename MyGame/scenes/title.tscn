@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://od3jtlc3a1jj"]
+[gd_scene load_steps=6 format=3 uid="uid://od3jtlc3a1jj"]
 
 [ext_resource type="Script" path="res://scenes/title.gd" id="1_i741h"]
 [ext_resource type="FontFile" uid="uid://fg1iigf0xxjj" path="res://fonts/alagard_by_pix3m-d6awiwp.ttf" id="1_lh8d2"]
-[ext_resource type="PackedScene" uid="uid://dng5ebpd4st0l" path="res://scenes/World.tscn" id="2_34mx2"]
-[ext_resource type="PackedScene" uid="uid://pklqo8sf3vms" path="res://scenes/Settings.tscn" id="3_vi1kw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fjco"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -16,8 +14,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="Title" type="CanvasLayer"]
 script = ExtResource("1_i741h")
-world = ExtResource("2_34mx2")
-settings = ExtResource("3_vi1kw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 472.0

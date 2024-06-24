@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="MyGame"
+run/main_scene="res://scenes/title.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
+Globals="*res://Globals.gd"
 
 [editor_plugins]
 

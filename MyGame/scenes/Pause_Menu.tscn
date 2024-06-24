@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvfvh4qg8wqij"]
+
+[ext_resource type="Script" path="res://scenes/Pause_Menu.gd" id="1_mxsix"]
+[ext_resource type="FontFile" uid="uid://fg1iigf0xxjj" path="res://fonts/alagard_by_pix3m-d6awiwp.ttf" id="2_k3xc4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ntes"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ypo57"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36b2a"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Pause Menu" type="CanvasLayer"]
+script = ExtResource("1_mxsix")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 58
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_k3xc4")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ntes")
+text = "Resume Game"
+alignment = 0
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_k3xc4")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_ypo57")
+text = "Settings"
+alignment = 0
+
+[node name="Back to Title" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_k3xc4")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_36b2a")
+text = "Back to Title"
+alignment = 0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back to Title" to="." method="_on_back_to_title_pressed"]

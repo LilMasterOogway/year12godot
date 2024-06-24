@@ -1,6 +1,4 @@
 extends CanvasLayer
-@export var world : PackedScene
-@export var settings : PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -13,13 +11,14 @@ func _process(delta):
 
 
 func _on_button_pressed():
-	get_tree().change_scene_to_packed(world)
+	get_tree().change_scene_to_file("res://scenes/World.tscn")
 	pass # Replace with function body.
 	
 
 
 func _on_settings_pressed():
-	get_tree().change_scene_to_packed(settings)
+
+	get_tree().change_scene_to_file("res://scenes/Settings.tscn")
 	pass # Replace with function body.
 
 

@@ -34,7 +34,7 @@ func _physics_process(delta):
 		velocity.y = jump_speed
 		
 	if Input.is_action_pressed("pause"):
-		get_tree().change_scene_to_file("res://scenes/title.tscn")
+		get_tree().change_scene_to_file("res://scenes/Pause_Menu.tscn")
 		
 	move_and_slide()
 	
