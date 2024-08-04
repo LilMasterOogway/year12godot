@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dget63vvhgs7u"]
+
+[ext_resource type="Texture2D" uid="uid://p4inepe8si6l" path="res://sprites/Object Sprites/sprite_01.png" id="1_iiqjp"]
+[ext_resource type="Texture2D" uid="uid://6wdfxmphirrf" path="res://Grass.tres" id="2_1qp4i"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(32, 32)
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport"]
+position = Vector2(16, 16)
+texture = ExtResource("1_iiqjp")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("2_1qp4i")
