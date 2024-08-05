@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4s4ilu2ty0m"]
+
+[ext_resource type="Texture2D" uid="uid://ct21fqoeticfw" path="res://sprites/Environment Sprites/conifers_4.png" id="1_hnv0n"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_he305"]
+
+[node name="Tree2" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01546, 0)
+shape = SubResource("CylinderShape3D_he305")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(4.43, 0, 0, 0, 4.43, 0, 0, 0, 4.43, 0, 2.20023, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("1_hnv0n")
