@@ -10,14 +10,28 @@ extends CharacterBody3D
 const BOB_FREQ  = 2.0
 const BOB_AMP = 0.08
 var t_bob = 0.0
+@onready var hand = %Hand
+@onready var animation_player = %AnimationPlayer
+var damage = 5
+var weapon_sprite = preload("res://Item Sprites/sprite_18.png")
+@onready var sprite_3d = $Hand/Sprite3D
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var jump_speed = 5
+
 func _ready():
 	# Capture the mouse
+	sprite_3d.texture = weapon_sprite
+	animation_player.play("RESET")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _process(delta):
+	hand.rotation.x = camera.rotation.x
 	
 func _physics_process(delta):
+	if Input.is_action_just_pressed("attack"):
+		animation_player.play("Attack")
+		
 	velocity.y += -gravity * delta
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var move_dir = transform.basis * Vector3(input_dir.x, 0, input_dir.y).normalized()
@@ -71,4 +85,5 @@ func _input(event):
 		camera.rotate_x(-event.relative.y * mouse_sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, -1,1)
 	
-
+func check_hit():
+	print("checking hit")

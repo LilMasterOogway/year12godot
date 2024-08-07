@@ -1,8 +1,84 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5nqt33h0tdos"]
+[gd_scene load_steps=8 format=3 uid="uid://b5nqt33h0tdos"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_a8b65"]
+[ext_resource type="PackedScene" uid="uid://qmkqgah6l8l5" path="res://scenes/HUD.tscn" id="2_r67j4"]
+[ext_resource type="Texture2D" uid="uid://cd4228g1q1ny2" path="res://Item Sprites/sprite_18.png" id="2_vhuy6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pq1mp"]
+
+[sub_resource type="Animation" id="Animation_lbqf0"]
+resource_name = "Attack"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_hit"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.416, -0.11, -0.429), Vector3(0.416, 0.05, -0.354), Vector3(0.016, -0.065, -0.354), Vector3(0.416, -0.11, -0.429)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.41895, 0), Vector3(0, -1.41895, -0.863938), Vector3(0.607375, -0.404916, -0.457276), Vector3(0, -1.41895, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m6v8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.416, -0.11, -0.429)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.41895, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pfng6"]
+_data = {
+"Attack": SubResource("Animation_lbqf0"),
+"RESET": SubResource("Animation_m6v8k")
+}
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38682, 0)
@@ -11,7 +87,24 @@ script = ExtResource("1_a8b65")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_pq1mp")
 
+[node name="Hand" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="Hand"]
+transform = Transform3D(0.151261, 0, -0.988494, 0, 1, 0, 0.988494, 0, 0.151261, 0.416, -0.11, -0.429)
+texture_filter = 0
+texture = ExtResource("2_vhuy6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hand"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_pfng6")
+}
+
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -2)
+
+[node name="HUD" parent="." instance=ExtResource("2_r67j4")]
