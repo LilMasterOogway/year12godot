@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://diajbpcbc7agk"]
+
+[ext_resource type="Script" path="res://RigidBody3D.gd" id="1_syob3"]
+[ext_resource type="Texture2D" uid="uid://dq7u5vukiwoa6" path="res://Item Sprites/sprite_27.png" id="2_no8l3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gwd4d"]
+
+[node name="Weapon" type="RigidBody3D" groups=["Weapon"]]
+script = ExtResource("1_syob3")
+weapon_sprite = ExtResource("2_no8l3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gwd4d")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1

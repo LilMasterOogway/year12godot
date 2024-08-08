@@ -74,10 +74,15 @@ func _headbob(time) -> Vector3:
 		
 func check_collisions():
 	var collider = ray.get_collider()
-	if collider.is_in_group("Physics"):
-		interact_label.visible = true
-		if Input.is_action_pressed("use"):
-			collider.apply_central_impulse(Vector3.UP * 2)
+	if collider:
+		if collider.is_in_group("Weapon"):
+			#interact_label.visible = true
+			if Input.is_action_just_pressed("use"):
+				collider.queue_free()
+				weapon_sprite = collider.weapon_sprite
+				damage = collider.damage
+				sprite_3d.texture = weapon_sprite
+			#collider.apply_central_impulse(Vector3.UP * 2)
 	
 func _input(event):
 	if event is InputEventMouseMotion:
