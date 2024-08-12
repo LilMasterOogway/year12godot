@@ -14,3 +14,4 @@ shape = SubResource("BoxShape3D_gwd4d")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
+texture_filter = 0
