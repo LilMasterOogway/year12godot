@@ -70,13 +70,13 @@ shadow_mesh = SubResource("ArrayMesh_pkcgb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pclec"]
 albedo_texture = ExtResource("2_pj2wo")
-uv1_scale = Vector3(5.72, 5.72, 5.72)
+uv1_scale = Vector3(4.6, 4.6, 4.6)
 uv1_triplanar = true
 texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8wlx"]
 albedo_texture = ExtResource("2_pj2wo")
-uv1_scale = Vector3(5.72, 5.72, 5.72)
+uv1_scale = Vector3(4.6, 4.6, 4.6)
 uv1_triplanar = true
 texture_filter = 0
 
