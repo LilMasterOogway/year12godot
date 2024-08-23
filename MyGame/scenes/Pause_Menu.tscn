@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvfvh4qg8wqij"]
+[gd_scene load_steps=7 format=3 uid="uid://dvfvh4qg8wqij"]
 
 [ext_resource type="Script" path="res://scenes/Pause_Menu.gd" id="1_mxsix"]
 [ext_resource type="FontFile" uid="uid://fg1iigf0xxjj" path="res://fonts/alagard_by_pix3m-d6awiwp.ttf" id="2_k3xc4"]
+[ext_resource type="Texture2D" uid="uid://c5et77psyxaqw" path="res://scenes/bg.png" id="3_648fr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ntes"]
 bg_color = Color(0.886275, 0, 0.811765, 0.52549)
@@ -26,6 +27,11 @@ border_blend = true
 
 [node name="Pause Menu" type="CanvasLayer"]
 script = ExtResource("1_mxsix")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(573.183, 328.438)
+scale = Vector2(0.791864, 0.791864)
+texture = ExtResource("3_648fr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 40.0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://pklqo8sf3vms"]
+[gd_scene load_steps=11 format=3 uid="uid://pklqo8sf3vms"]
 
 [ext_resource type="Script" path="res://scenes/Settings.gd" id="1_oebdl"]
 [ext_resource type="FontFile" uid="uid://fg1iigf0xxjj" path="res://fonts/alagard_by_pix3m-d6awiwp.ttf" id="2_7nsh1"]
 [ext_resource type="Script" path="res://scenes/Control.gd" id="3_md6oj"]
+[ext_resource type="Texture2D" uid="uid://c5et77psyxaqw" path="res://scenes/bg.png" id="4_gkel3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nx1qb"]
 bg_color = Color(0.886275, 0, 0.811765, 0.52549)
@@ -14,7 +15,7 @@ border_blend = true
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fb2yf"]
 bg_color = Color(0.886275, 0, 0.811765, 0.52549)
 border_width_left = 25
-border_width_right = 300
+border_width_right = 380
 border_color = Color(0.8, 0.8, 0.8, 0)
 border_blend = true
 
@@ -36,6 +37,11 @@ border_blend = true
 
 [node name="Settings" type="CanvasLayer"]
 script = ExtResource("1_oebdl")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(573.183, 328.438)
+scale = Vector2(0.791864, 0.791864)
+texture = ExtResource("4_gkel3")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 592.0
@@ -85,9 +91,9 @@ script = ExtResource("3_md6oj")
 [node name="HSlider" type="HSlider" parent="Control"]
 custom_minimum_size = Vector2(0, 49.28)
 layout_mode = 0
-offset_left = 338.0
+offset_left = 337.0
 offset_top = 195.0
-offset_right = 866.0
+offset_right = 865.0
 offset_bottom = 244.28
 max_value = 1.0
 step = 0.1
@@ -95,3 +101,4 @@ step = 0.1
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back to Title" to="." method="_on_back_to_title_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_pressed"]
+[connection signal="value_changed" from="Control/HSlider" to="." method="_on_h_slider_value_changed"]
