@@ -5,14 +5,15 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gwd4d"]
 
-[node name="Weapon" type="RigidBody3D" groups=["Weapon"]]
+[node name="Hammer" type="RigidBody3D" groups=["Weapon"]]
 script = ExtResource("1_syob3")
 weapon_sprite = ExtResource("2_no8l3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.585, 0, 0, 0, 0.585, 0, 0, 0, 0.585, 0, 0, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 shape = SubResource("BoxShape3D_gwd4d")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 billboard = 1
 texture_filter = 0

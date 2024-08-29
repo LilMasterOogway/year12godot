@@ -23,6 +23,7 @@ func _on_fullscreen_pressed():
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		fullscreen.text = "Fullscreen : ON"
+	pass
 
 
 func _on_h_slider_value_changed(value):

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbatc7h2ytxen"]
+[gd_scene load_steps=7 format=3 uid="uid://bbatc7h2ytxen"]
 
 [ext_resource type="Script" path="res://scenes/SettingsInGame.gd" id="1_xc1xp"]
 [ext_resource type="FontFile" uid="uid://fg1iigf0xxjj" path="res://fonts/alagard_by_pix3m-d6awiwp.ttf" id="2_g1gvm"]
 [ext_resource type="Texture2D" uid="uid://c5et77psyxaqw" path="res://scenes/bg.png" id="3_hubay"]
-[ext_resource type="Script" path="res://scenes/Control.gd" id="4_yhcwu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nx1qb"]
 bg_color = Color(0.886275, 0, 0.811765, 0.52549)
@@ -19,10 +18,10 @@ border_width_right = 490
 border_color = Color(0.8, 0.8, 0.8, 0)
 border_blend = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aovki"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oppet"]
 bg_color = Color(0.886275, 0, 0.811765, 0.52549)
 border_width_left = 25
-border_width_right = 250
+border_width_right = 490
 border_color = Color(0.8, 0.8, 0.8, 0)
 border_blend = true
 
@@ -35,7 +34,7 @@ scale = Vector2(0.791864, 0.791864)
 texture = ExtResource("3_hubay")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 592.0
+offset_right = 1031.0
 offset_bottom = 284.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -61,35 +60,24 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_fb2yf")
 text = "Fullscreen : ON"
 alignment = 0
 
-[node name="Volume" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.912289, 0.912289, 0.912289, 1)
 theme_override_fonts/font = ExtResource("2_g1gvm")
 theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = SubResource("StyleBoxFlat_aovki")
+theme_override_styles/normal = SubResource("StyleBoxFlat_oppet")
 text = "Volume:"
-alignment = 0
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 64.0
-offset_top = 58.0
-offset_right = 901.0
-offset_bottom = 284.0
-script = ExtResource("4_yhcwu")
-
-[node name="HSlider" type="HSlider" parent="Control"]
+[node name="HSlider" type="HSlider" parent="."]
 custom_minimum_size = Vector2(0, 49.28)
-layout_mode = 2
-offset_left = 279.0
-offset_top = 138.0
-offset_right = 856.0
-offset_bottom = 187.28
+offset_left = 343.0
+offset_top = 196.0
+offset_right = 920.0
+offset_bottom = 245.28
 min_value = -80.0
 max_value = 24.0
 step = 0.1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back to Title" to="." method="_on_back_to_title_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_pressed"]
-[connection signal="value_changed" from="Control/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
