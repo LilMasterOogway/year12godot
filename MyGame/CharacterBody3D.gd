@@ -1,5 +1,6 @@
 extends CharacterBody3D
-
+class_name Player
+@export var Health = 3
 @export var speed = 2
 @export var sprint_speed = 4
 @export var current_speed = speed
@@ -8,7 +9,7 @@ extends CharacterBody3D
 @onready var ray = $Camera3D/RayCast3D
 @onready var interact_label = $CanvasLayer/Label
 const BOB_FREQ  = 2.0
-const BOB_AMP = 0.08
+const BOB_AMP = 0.05
 var t_bob = 0.0
 @onready var hand = %Hand
 @onready var animation_player = %AnimationPlayer
@@ -18,12 +19,23 @@ var weapon_sprite = preload("res://Item Sprites/sprite_18.png")
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var jump_speed = 5
+func hurt():
+	Health-=1
+	if Health <= 2:
+		$HUD/Heart3.hide()
+	if Health <= 1:
+		$HUD/Heart2.hide()
+	if Health <= 0:
+		await get_tree().create_timer(1)
+		get_tree().change_scene_to_file("res://scenes/death.tscn")
+
 
 func _ready():
 	# Capture the mouse
 	sprite_3d.texture = weapon_sprite
 	animation_player.play("RESET")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 
 func _process(delta):
 	hand.rotation.x = camera.rotation.x
@@ -92,3 +104,4 @@ func _input(event):
 	
 func check_hit():
 	print("checking hit")
+	

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://fe70vc3yb3g"]
+
+[ext_resource type="Script" path="res://Weapon.gd" id="1_ldwa8"]
+[ext_resource type="Texture2D" uid="uid://j3kd51mibkpc" path="res://Item Sprites/sprite_19.png" id="2_rdaa4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8aqo"]
+
+[node name="Mace" type="RigidBody3D" groups=["Weapon"]]
+script = ExtResource("1_ldwa8")
+damage = 12
+weapon_sprite = ExtResource("2_rdaa4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+shape = SubResource("BoxShape3D_y8aqo")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+billboard = 1
+texture_filter = 0

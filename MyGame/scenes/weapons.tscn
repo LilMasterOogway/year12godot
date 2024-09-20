@@ -7,6 +7,7 @@
 
 [node name="Hammer" type="RigidBody3D" groups=["Weapon"]]
 script = ExtResource("1_syob3")
+damage = 8
 weapon_sprite = ExtResource("2_no8l3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

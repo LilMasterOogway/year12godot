@@ -1,0 +1,119 @@
+[gd_scene load_steps=20 format=3 uid="uid://cw7c07b3161h5"]
+
+[ext_resource type="Texture2D" uid="uid://dhv2fjkxvrnry" path="res://sprites/Enemy Sprites/sprite_22.png" id="1_1gq4w"]
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_kkkas"]
+[ext_resource type="Texture2D" uid="uid://dyp17tp0yvut1" path="res://sprites/Enemy Sprites/sprite_23.png" id="2_0dgk0"]
+[ext_resource type="Texture2D" uid="uid://1deglhp5irk1" path="res://sprites/Enemy Sprites/sprite_24.png" id="3_otib3"]
+[ext_resource type="Texture2D" uid="uid://b716sad371sth" path="res://sprites/Enemy Sprites/sprite_25.png" id="4_ombxu"]
+[ext_resource type="Texture2D" uid="uid://dr7ms1pun3tcy" path="res://sprites/Enemy Sprites/sprite_26.png" id="5_6l04s"]
+[ext_resource type="Texture2D" uid="uid://k4nnj3lw0h6c" path="res://sprites/Enemy Sprites/sprite_31.png" id="6_x5u7j"]
+[ext_resource type="Texture2D" uid="uid://cfx0gp500eqf5" path="res://sprites/Enemy Sprites/sprite_32.png" id="7_673w1"]
+[ext_resource type="Texture2D" uid="uid://danuf1i62tbye" path="res://sprites/Enemy Sprites/sprite_33.png" id="8_k6lon"]
+[ext_resource type="Texture2D" uid="uid://ceulluektk7d" path="res://sprites/Enemy Sprites/sprite_34.png" id="9_qebsn"]
+[ext_resource type="Texture2D" uid="uid://bibryxwibh57x" path="res://sprites/Enemy Sprites/sprite_35.png" id="10_xet2c"]
+[ext_resource type="Texture2D" uid="uid://8yux0hmtnr2b" path="res://sprites/Enemy Sprites/sprite_36.png" id="11_x5quj"]
+[ext_resource type="Texture2D" uid="uid://d0ydvc3m3duv" path="res://sprites/Enemy Sprites/sprite_37.png" id="12_tct8t"]
+[ext_resource type="Texture2D" uid="uid://brkkci8bx16ja" path="res://sprites/Enemy Sprites/sprite_18.png" id="13_1ot74"]
+[ext_resource type="Texture2D" uid="uid://dhoa585lmm578" path="res://sprites/Enemy Sprites/sprite_19.png" id="14_vxyom"]
+[ext_resource type="Texture2D" uid="uid://my3wxrna37qe" path="res://sprites/Enemy Sprites/sprite_20.png" id="15_8f0dc"]
+[ext_resource type="Texture2D" uid="uid://ugojcnaa6mf8" path="res://sprites/Enemy Sprites/sprite_21.png" id="16_bhtje"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h4sco"]
+radius = 0.168586
+height = 0.337172
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d5phm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1gq4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0dgk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_otib3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ombxu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6l04s")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_x5u7j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_673w1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k6lon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qebsn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_xet2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_x5quj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tct8t")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_1ot74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_vxyom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8f0dc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_bhtje")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 6.0
+}]
+
+[node name="Spider" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("1_kkkas")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_h4sco")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_d5phm")
+animation = &"Walking"
+autoplay = "Walking"
+
+[node name="RayCast3D" type="RayCast3D" parent="AnimatedSprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.181954, 0)
+target_position = Vector3(0, 0, -0.445)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="HitTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

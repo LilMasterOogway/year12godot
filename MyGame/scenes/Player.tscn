@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5nqt33h0tdos"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_a8b65"]
-[ext_resource type="PackedScene" uid="uid://qmkqgah6l8l5" path="res://scenes/HUD.tscn" id="2_r67j4"]
+[ext_resource type="Texture2D" uid="uid://yg3n3u57pqsw" path="res://sprites/Object Sprites/New Piskel.png" id="2_1hvs4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pq1mp"]
 
@@ -80,7 +80,7 @@ _data = {
 "RESET": SubResource("Animation_m6v8k")
 }
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38682, 0)
 script = ExtResource("1_a8b65")
 
@@ -105,4 +105,21 @@ libraries = {
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -2)
 
-[node name="HUD" parent="." instance=ExtResource("2_r67j4")]
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Heart1" type="Sprite2D" parent="HUD"]
+position = Vector2(240, 60)
+scale = Vector2(3.5, 3)
+texture = ExtResource("2_1hvs4")
+
+[node name="Heart2" type="Sprite2D" parent="HUD"]
+position = Vector2(160, 60)
+scale = Vector2(3.5, 3)
+texture = ExtResource("2_1hvs4")
+
+[node name="Heart3" type="Sprite2D" parent="HUD"]
+position = Vector2(80, 60)
+scale = Vector2(3.5, 3)
+texture = ExtResource("2_1hvs4")
+
+[node name="Timer" type="Timer" parent="."]
