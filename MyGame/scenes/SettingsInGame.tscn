@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbatc7h2ytxen"]
+[gd_scene load_steps=8 format=3 uid="uid://bbatc7h2ytxen"]
 
 [ext_resource type="Script" path="res://scenes/SettingsInGame.gd" id="1_xc1xp"]
 [ext_resource type="FontFile" uid="uid://fg1iigf0xxjj" path="res://fonts/alagard_by_pix3m-d6awiwp.ttf" id="2_g1gvm"]
 [ext_resource type="Texture2D" uid="uid://c5et77psyxaqw" path="res://scenes/bg.png" id="3_hubay"]
+[ext_resource type="PackedScene" uid="uid://cp78bipcsmgv0" path="res://scenes/music_slider.tscn" id="4_h15xf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nx1qb"]
 bg_color = Color(0.886275, 0, 0.811765, 0.52549)
@@ -68,16 +69,8 @@ theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxFlat_oppet")
 text = "Volume:"
 
-[node name="HSlider" type="HSlider" parent="."]
-custom_minimum_size = Vector2(0, 49.28)
-offset_left = 343.0
-offset_top = 196.0
-offset_right = 920.0
-offset_bottom = 245.28
-min_value = -80.0
-max_value = 24.0
-step = 0.1
+[node name="Music" parent="MarginContainer" instance=ExtResource("4_h15xf")]
+layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back to Title" to="." method="_on_back_to_title_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_pressed"]
-[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

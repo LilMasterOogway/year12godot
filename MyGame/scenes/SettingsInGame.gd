@@ -1,6 +1,7 @@
 extends CanvasLayer
 @onready var fullscreen = $MarginContainer/VBoxContainer/Fullscreen
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -11,8 +12,7 @@ func _process(delta):
 	pass
 
 
-func _on_h_slider_value_changed(value):
-	Globals.volume = value
+
 
 
 

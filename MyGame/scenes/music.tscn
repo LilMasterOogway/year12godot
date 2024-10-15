@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvbwxxfqhnsuf"]
+
+[ext_resource type="AudioStream" uid="uid://blgsk21tw4xn0" path="res://scenes/Unsainted [8 Bit Tribute to Slipknot] - 8 Bit Universe.mp3" id="1_b1scn"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_b1scn")
+volume_db = -6.559
+autoplay = true

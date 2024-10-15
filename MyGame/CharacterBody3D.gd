@@ -1,5 +1,6 @@
 extends CharacterBody3D
 class_name Player
+@onready var spider = get_tree().get_first_node_in_group("Spider")
 @export var Health = 3
 @export var speed = 2
 @export var sprint_speed = 4
@@ -7,7 +8,7 @@ class_name Player
 @export var mouse_sensitivity = 0.005
 @onready var camera = $Camera3D
 @onready var ray = $Camera3D/RayCast3D
-@onready var interact_label = $CanvasLayer/Label
+#@onready var interact_label = $CanvasLayer/Label
 const BOB_FREQ  = 2.0
 const BOB_AMP = 0.05
 var t_bob = 0.0
@@ -16,6 +17,7 @@ var t_bob = 0.0
 var damage = 5
 var weapon_sprite = preload("res://Item Sprites/sprite_18.png")
 @onready var sprite_3d = $Hand/Sprite3D
+@onready var interact_label: Label = $HUD/Label
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var jump_speed = 5
@@ -70,9 +72,15 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	
-	
-	if ray.is_colliding():
+		
+	if ray.get_collider():
 		check_collisions()
+	else:
+		interact_label.hide()
+	
+	
+		
+		
 		
 	
 	#else:
@@ -88,13 +96,15 @@ func check_collisions():
 	var collider = ray.get_collider()
 	if collider:
 		if collider.is_in_group("Weapon"):
-			#interact_label.visible = true
+			interact_label.show()
 			if Input.is_action_just_pressed("use"):
 				collider.queue_free()
 				weapon_sprite = collider.weapon_sprite
 				damage = collider.damage
 				sprite_3d.texture = weapon_sprite
+				interact_label.hide()
 			#collider.apply_central_impulse(Vector3.UP * 2)
+
 	
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -103,5 +113,11 @@ func _input(event):
 		camera.rotation.x = clamp(camera.rotation.x, -1,1)
 	
 func check_hit():
-	print("checking hit")
+	
+	print("check hit")
+	if ray.is_colliding():
+		ray.force_raycast_update()
+		if ray.get_collider() is Spider:
+			print("hit spider")
+			ray.get_collider().hurt()
 	

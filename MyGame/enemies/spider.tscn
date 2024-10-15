@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cw7c07b3161h5"]
+[gd_scene load_steps=21 format=3 uid="uid://cw7c07b3161h5"]
 
 [ext_resource type="Texture2D" uid="uid://dhv2fjkxvrnry" path="res://sprites/Enemy Sprites/sprite_22.png" id="1_1gq4w"]
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_kkkas"]
@@ -88,7 +88,11 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Spider" type="CharacterBody3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ophqb"]
+height = 0.908444
+radius = 4.45926
+
+[node name="Spider" type="CharacterBody3D" groups=["Enemy"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_kkkas")
 
@@ -115,5 +119,12 @@ autostart = true
 [node name="HitTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_ophqb")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

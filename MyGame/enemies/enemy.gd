@@ -1,14 +1,15 @@
 extends CharacterBody3D
 
-class_name Enemy
+class_name Spider
 
+@export var Health = 1
 @onready var ray = $AnimatedSprite3D/RayCast3D
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var _nav_agent := $NavigationAgent3D as NavigationAgent3D
 
 @export var character_speed := 2.0
 var attacking = false
-var following = true
+var following = false
 func _physics_process(delta: float) -> void:
 	if not following: return
 	#set_target_position(player.global_position)
@@ -42,6 +43,11 @@ func _physics_process(delta: float) -> void:
 	#player.hurt (might need to add function to player called hurt)
 	#play attack animation
 
+func hurt():
+	Health-=1
+	if Health <=0:
+		queue_free()
+		
 
 func set_target_position(target_position: Vector3):
 	_nav_agent.set_target_position(target_position)
@@ -52,4 +58,16 @@ func _on_timer_timeout() -> void:
 
 
 func _on_hit_timer_timeout() -> void:
+	set_target_position(player.global_position)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Player"):
+		following = true
+	pass # Replace with function body.
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.is_in_group("Player"):
+		following =  false
 	pass # Replace with function body.
