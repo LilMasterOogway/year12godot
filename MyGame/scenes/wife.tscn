@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7y6se5t6m7oc"]
+
+[ext_resource type="Texture2D" uid="uid://bk7jr5dgg6r1x" path="res://sprites/snap/snap1.png" id="1_vo333"]
+[ext_resource type="Texture2D" uid="uid://blc80kkpt7ct" path="res://sprites/snap/snap2.png" id="2_ej5ok"]
+[ext_resource type="Texture2D" uid="uid://b62tgye7i8urf" path="res://sprites/snap/snap3.png" id="3_ijdb3"]
+[ext_resource type="Texture2D" uid="uid://bt8wpys2jypu8" path="res://sprites/snap/snap4.png" id="4_7rcpu"]
+[ext_resource type="Texture2D" uid="uid://bsydwl6liyvit" path="res://sprites/snap/snap5.png" id="5_ab3pv"]
+[ext_resource type="Texture2D" uid="uid://kw0wu2hq8y47" path="res://sprites/snap/snap6.png" id="6_ekr54"]
+[ext_resource type="Texture2D" uid="uid://cfec37wasni6w" path="res://sprites/snap/snap7.png" id="7_lmt1w"]
+[ext_resource type="Texture2D" uid="uid://lyu7y06igxy0" path="res://sprites/snap/snap8.png" id="8_tegn6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yn2p0"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jvte"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vo333")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ej5ok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ijdb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7rcpu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ab3pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ekr54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lmt1w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tegn6")
+}],
+"loop": true,
+"name": &"Dancing",
+"speed": 5.0
+}]
+
+[node name="Wife" type="RigidBody3D" groups=["End"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_yn2p0")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_7jvte")
+animation = &"Dancing"
+autoplay = "Dancing"
+frame_progress = 0.813395

@@ -18,6 +18,7 @@ var damage = 5
 var weapon_sprite = preload("res://Item Sprites/sprite_18.png")
 @onready var sprite_3d = $Hand/Sprite3D
 @onready var interact_label: Label = $HUD/Label
+@onready var end_interact_label: Label = $HUD/Label2
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var jump_speed = 5
@@ -103,7 +104,14 @@ func check_collisions():
 				damage = collider.damage
 				sprite_3d.texture = weapon_sprite
 				interact_label.hide()
-			#collider.apply_central_impulse(Vector3.UP * 2)
+		if collider.is_in_group("End"):
+			end_interact_label.show()
+			if Input.is_action_just_pressed("use"):
+				collider.queue_free()
+				get_tree().change_scene_to_file("res://scenes/end.tscn")
+				end_interact_label.hide()
+			
+			
 
 	
 func _input(event):
