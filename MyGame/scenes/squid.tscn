@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://b7yubp8ahn1bg"]
+
+[ext_resource type="Script" path="res://Squid.gd" id="1_v7qvm"]
+[ext_resource type="Texture2D" uid="uid://bibrhx4bbsoxu" path="res://sprites/Enemy Sprites/sprite_46.png" id="2_oqwi7"]
+[ext_resource type="Texture2D" uid="uid://dvyp3lbhy3opp" path="res://sprites/Enemy Sprites/sprite_48.png" id="3_dbh7p"]
+[ext_resource type="Texture2D" uid="uid://pm27ryj0prcy" path="res://sprites/Enemy Sprites/sprite_47.png" id="4_j6lov"]
+[ext_resource type="Texture2D" uid="uid://c65gryc4dfemy" path="res://sprites/Enemy Sprites/sprite_50.png" id="5_gw1sf"]
+[ext_resource type="Texture2D" uid="uid://ck1771ckok3yr" path="res://sprites/Enemy Sprites/sprite_51.png" id="6_jdun7"]
+[ext_resource type="Texture2D" uid="uid://bwuk35abss1r3" path="res://sprites/Enemy Sprites/sprite_38.png" id="7_j4kf4"]
+[ext_resource type="Texture2D" uid="uid://dqurv2uwk0rrx" path="res://sprites/Enemy Sprites/sprite_39.png" id="8_ls2ad"]
+[ext_resource type="Texture2D" uid="uid://bb3rdhpd0tqwe" path="res://sprites/Enemy Sprites/sprite_40.png" id="9_pawfb"]
+[ext_resource type="Texture2D" uid="uid://b38k2u6rrf372" path="res://sprites/Enemy Sprites/sprite_41.png" id="10_ugbt0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ax0uc"]
+radius = 0.121
+height = 0.3
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i3sig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oqwi7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dbh7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j6lov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gw1sf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jdun7")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_j4kf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ls2ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pawfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ugbt0")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ooar5"]
+radius = 4.45926
+
+[node name="Squid" type="CharacterBody3D" groups=["Enemy"]]
+script = ExtResource("1_v7qvm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ax0uc")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_i3sig")
+animation = &"Walking"
+autoplay = "Walking"
+
+[node name="RayCast3D" type="RayCast3D" parent="AnimatedSprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.181954, 0)
+target_position = Vector3(0, 0, -0.445)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_ooar5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="HitTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

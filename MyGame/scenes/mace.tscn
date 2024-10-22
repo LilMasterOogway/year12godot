@@ -7,7 +7,7 @@
 
 [node name="Mace" type="RigidBody3D" groups=["Weapon"]]
 script = ExtResource("1_ldwa8")
-damage = 12
+damage = 15
 weapon_sprite = ExtResource("2_rdaa4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

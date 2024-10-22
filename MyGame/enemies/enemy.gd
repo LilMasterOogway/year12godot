@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 class_name Spider
 
-@export var Health = 1
+@export var Health = 5
 @onready var ray = $AnimatedSprite3D/RayCast3D
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var _nav_agent := $NavigationAgent3D as NavigationAgent3D
@@ -43,8 +43,8 @@ func _physics_process(delta: float) -> void:
 	#player.hurt (might need to add function to player called hurt)
 	#play attack animation
 
-func hurt():
-	Health-=1
+func hurt(dmg =1):
+	Health -=dmg
 	if Health <=0:
 		queue_free()
 		

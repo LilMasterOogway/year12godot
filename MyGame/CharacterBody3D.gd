@@ -1,6 +1,7 @@
 extends CharacterBody3D
 class_name Player
 @onready var spider = get_tree().get_first_node_in_group("Spider")
+@onready var squid = get_tree().get_first_node_in_group("Squid")
 @export var Health = 3
 @export var speed = 2
 @export var sprint_speed = 4
@@ -127,5 +128,11 @@ func check_hit():
 		ray.force_raycast_update()
 		if ray.get_collider() is Spider:
 			print("hit spider")
-			ray.get_collider().hurt()
+			ray.get_collider().hurt(damage)
+		if ray.get_collider() is Squid:
+			print("hit spider")
+			ray.get_collider().hurt(damage)
+		if ray.get_collider() is Zombie:
+			print("hit spider")
+			ray.get_collider().hurt(damage)
 	
