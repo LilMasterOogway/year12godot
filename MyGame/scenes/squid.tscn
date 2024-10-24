@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://b38k2u6rrf372" path="res://sprites/Enemy Sprites/sprite_41.png" id="10_ugbt0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ax0uc"]
-radius = 0.121
-height = 0.3
+radius = 0.41
+height = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i3sig"]
 animations = [{

@@ -30,7 +30,6 @@ func hurt():
 	if Health <= 1:
 		$HUD/Heart2.hide()
 	if Health <= 0:
-		await get_tree().create_timer(1)
 		get_tree().change_scene_to_file("res://scenes/death.tscn")
 
 
